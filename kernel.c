@@ -1,8 +1,7 @@
 #include "console.h" 
+#include "io.h"
 #include "keyboard.h"
 #include "portmap.h"
-#include "io.h"
-#include <stdint.h>
 
 void main() {
 clear_terminal();

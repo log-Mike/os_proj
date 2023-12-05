@@ -1,4 +1,5 @@
 #include "console.h"
+#include "portmap.h"
 
 char* const VGA_BUFFER = (char*) 0xb8000; // Pointer to the memory address of our VGA Buffer
 
