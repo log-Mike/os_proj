@@ -1,15 +1,22 @@
 #include "console.h" 
+#include "keyboard.h"
+#include "portmap.h"
+#include "io.h"
+#include <stdint.h>
 
 void main() {
+clear_terminal();
 
-     clear_terminal();
+uint8_t byte;
 
-     print_string_with_color("hello", YELLOW, CYAN);
+while(1) {
 
-     print_line_with_color("World", MAGENTA, GREEN);
+     while ( byte = scan()) {
 
-     print_string("Today");
+          print_character(charmap[byte]);
 
-     return;
+     }
+
+}
 
 }

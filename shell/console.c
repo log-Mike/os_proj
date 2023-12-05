@@ -16,8 +16,8 @@ void clear_terminal() {
 
                    VGA_BUFFER[i+1] = 0x07;  // and store a light gray color as the style, which is the default VGA_BEHAVIOR)
 
-     }
-
+    }
+    update_cursor();
 }
 
 void set_terminal_font_color(VGA_Color col) {
@@ -78,6 +78,7 @@ void print_character_with_color(char c, VGA_Color bg_color, VGA_Color font_color
     if (c == '\n') {
         // Reset terminal_position to the next multiple of 160 (80 columns * 2 bytes per character)
         terminal_position = (terminal_position / (VGA_WIDTH * VGA_BYTES_PER_CHARACTER) + 1) * (VGA_WIDTH * VGA_BYTES_PER_CHARACTER);
+	update_cursor();
         return;
     }
 
@@ -92,4 +93,20 @@ void print_character_with_color(char c, VGA_Color bg_color, VGA_Color font_color
         // Move to the next line
         terminal_position += (VGA_WIDTH - 1) * VGA_BYTES_PER_CHARACTER;
     }
+
+    update_cursor();
+}
+
+void update_cursor() {
+
+     uint16_t cursor_position = terminal_position >> 1;
+
+     outb(0x3D4, 0x0F);
+
+     outb(0x3D5, (uint8_t) (cursor_position));
+
+     outb(0x3D4, 0x0E);
+
+     outb(0x3D5, (uint8_t) (cursor_position >> 8));
+
 }
