@@ -1,4 +1,5 @@
 #include "keyboard.h"
+#include "portmap.h"
 
 uint8_t scan(void) {
 
