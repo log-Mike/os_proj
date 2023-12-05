@@ -2,10 +2,6 @@
 
 #define MYOS_INCLUDE_CONSOLE_H
 
-// Future code will go here
-
-#endif
-
 static const int VGA_WIDTH = 80;
 
 static const int VGA_HEIGHT = 25;
@@ -65,3 +61,6 @@ void print_line(char* str);
 void set_terminal_font_color(VGA_Color col);
 
 void set_terminal_background_color(VGA_Color col);
+
+
+#endif
